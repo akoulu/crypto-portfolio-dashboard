@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+<section class="page animate-in">
+  <header class="page-header">
+    <div>
+      <p class="page-subtitle">Track portfolio value, daily change, and asset performance at a glance.</p>
+    </div>
+    <span class="chip chip--success">Live market data</span>
+  </header>
+
+  <app-stats-cards />
+
+  <div class="page-grid page-grid--2">
+    <article class="panel hover-lift stagger-2">
+      <h3 class="panel-title">Recent activity</h3>
+      <div class="empty-state panel-empty">
+        <mat-icon>history</mat-icon>
+        <p>Transactions will appear here once you add your first trade.</p>
+      </div>
+    </article>
+
+    <article class="panel hover-lift stagger-3">
+      <h3 class="panel-title">Top movers</h3>
+      <div class="empty-state panel-empty">
+        <mat-icon>trending_up</mat-icon>
+        <p>Connect assets to see today&apos;s best and worst performers.</p>
+      </div>
+    </article>
+  </div>
+</section>

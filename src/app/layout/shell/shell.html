@@ -1,94 +1,100 @@
-<mat-sidenav-container class="shell-container">
+<mat-sidenav-container class="shell">
   <mat-sidenav
+    class="sidebar"
     [mode]="sidenavMode"
     [opened]="opened"
-    (openedChange)="opened = $event"
-    [fixedInViewport]="isMobile"
-    [fixedTopGap]="isMobile ? 56 : 0"
-    class="sidenav"
+    (openedChange)="onSidenavOpenedChange($event)"
     [attr.aria-hidden]="isMobile && !opened">
 
-    <div class="logo">
-      Crypto Dashboard
+    <div class="sidebar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <mat-icon>currency_bitcoin</mat-icon>
+        </span>
+        <div class="brand-copy">
+          <span class="brand-name text-gradient">Crypto</span>
+          <span class="brand-tag">Portfolio</span>
+        </div>
+      </div>
+
+      <mat-nav-list class="nav" aria-label="Main navigation">
+        <a
+          mat-list-item
+          class="nav-link"
+          routerLink="/dashboard"
+          routerLinkActive="nav-link--active"
+          (click)="closeSidenavOnMobile()">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
+
+        <a
+          mat-list-item
+          class="nav-link"
+          routerLink="/portfolio"
+          routerLinkActive="nav-link--active"
+          (click)="closeSidenavOnMobile()">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>Portfolio</span>
+        </a>
+
+        <a
+          mat-list-item
+          class="nav-link"
+          routerLink="/transactions"
+          routerLinkActive="nav-link--active"
+          (click)="closeSidenavOnMobile()">
+          <mat-icon>receipt_long</mat-icon>
+          <span>Transactions</span>
+        </a>
+
+        <a
+          mat-list-item
+          class="nav-link"
+          routerLink="/analytics"
+          routerLinkActive="nav-link--active"
+          (click)="closeSidenavOnMobile()">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Analytics</span>
+        </a>
+      </mat-nav-list>
     </div>
-
-    <mat-nav-list class="nav-list">
-
-      <a mat-list-item
-         routerLink="/dashboard"
-         routerLinkActive="active-link"
-         (click)="closeSidenavOnMobile()"
-         aria-label="Dashboard">
-
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-
-      </a>
-
-      <a mat-list-item
-         routerLink="/portfolio"
-         routerLinkActive="active-link"
-         (click)="closeSidenavOnMobile()"
-         aria-label="Portfolio">
-
-        <mat-icon>account_balance_wallet</mat-icon>
-        <span>Portfolio</span>
-
-      </a>
-
-      <a mat-list-item
-         routerLink="/transactions"
-         routerLinkActive="active-link"
-         (click)="closeSidenavOnMobile()"
-         aria-label="Transactions">
-
-        <mat-icon>swap_horiz</mat-icon>
-        <span>Transactions</span>
-
-      </a>
-
-      <a mat-list-item
-         routerLink="/analytics"
-         routerLinkActive="active-link"
-         (click)="closeSidenavOnMobile()"
-         aria-label="Analytics">
-
-        <mat-icon>analytics</mat-icon>
-        <span>Analytics</span>
-
-      </a>
-
-    </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content class="shell-content">
-
-    <mat-toolbar color="primary" class="topbar">
-
+  <mat-sidenav-content class="main">
+    <header class="header">
       <button
         mat-icon-button
         type="button"
+        class="icon-btn"
         (click)="toggleSidenav()"
-        [attr.aria-label]="opened ? 'Close navigation menu' : 'Open navigation menu'"
+        [attr.aria-label]="opened ? 'Close menu' : 'Open menu'"
         [attr.aria-expanded]="opened">
-
         <mat-icon>{{ isMobile && opened ? 'close' : 'menu' }}</mat-icon>
       </button>
 
-      <span class="toolbar-title">Crypto Portfolio</span>
+      <div class="header-copy">
+        <p class="eyebrow">Workspace</p>
+        <h1 class="page-title">{{ pageTitle }}</h1>
+      </div>
 
-      <span class="spacer"></span>
+      <div class="header-actions">
+        <button
+          mat-icon-button
+          type="button"
+          class="icon-btn"
+          (click)="toggleTheme()"
+          [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
+          <mat-icon>{{ isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+        <button mat-icon-button type="button" class="icon-btn" aria-label="Notifications">
+          <mat-icon>notifications_none</mat-icon>
+        </button>
+      </div>
+    </header>
 
-      <button mat-icon-button type="button" aria-label="Toggle dark mode">
-        <mat-icon>dark_mode</mat-icon>
-      </button>
-
-    </mat-toolbar>
-
-    <main class="content">
+    <div class="page-scroll">
       <router-outlet></router-outlet>
-    </main>
-
+    </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
+import { StatsCards } from '../../components/stats-cards/stats-cards';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [StatsCards, MatIcon],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

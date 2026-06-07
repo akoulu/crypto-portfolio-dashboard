@@ -1,4 +1,32 @@
 @use '@angular/material' as mat;
+@use './styles/tokens';
+@use './styles/typography';
+@use './styles/motion';
+@use './styles/layout';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html.shell-no-scroll,
+body.shell-no-scroll {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+app-root {
+  display: block;
+  min-height: 100%;
+}
 
 @include mat.core();
 
@@ -24,4 +52,9 @@ $dark-theme: mat.define-theme((
 
 .dark-theme {
   @include mat.all-component-themes($dark-theme);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
