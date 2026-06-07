@@ -1,4 +1,5 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,8 +10,8 @@ import {
   updateProfile,
   User,
 } from 'firebase/auth';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { BehaviorSubject, from, Observable, of, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { resolveFirebaseAuthError } from './auth-firebase.errors';
 import { LoginCredentials, RegisterCredentials } from './auth-firebase.models';
 import { FIREBASE_AUTH } from './firebase.providers';
@@ -20,6 +21,7 @@ import { FIREBASE_AUTH } from './firebase.providers';
 })
 export class AuthFirebase {
   private readonly auth = inject(FIREBASE_AUTH);
+  private readonly platformId = inject(PLATFORM_ID);
   private readonly authStateReady$ = new ReplaySubject<User | null>(1);
   private readonly userSubject = new BehaviorSubject<User | null>(this.auth.currentUser);
   private authInitialized = false;
@@ -35,14 +37,15 @@ export class AuthFirebase {
   }
 
   waitForAuthState$(): Observable<User | null> {
-    if (this.authInitialized) {
-      return new Observable((subscriber) => {
-        subscriber.next(this.currentUser());
-        subscriber.complete();
-      });
+    if (!isPlatformBrowser(this.platformId)) {
+      return of(null);
     }
 
-    return this.authStateReady$.pipe(take(1));
+    if (this.authInitialized) {
+      return of(this.currentUser());
+    }
+
+    return from(this.auth.authStateReady()).pipe(map(() => this.auth.currentUser));
   }
 
   async signInWithEmail(credentials: LoginCredentials): Promise<User> {

@@ -89,6 +89,7 @@
           <a
             routerLink="/login"
             routerLinkActive="auth-nav__link--active"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="auth-nav__link"
             (click)="closeSidenavOnMobile()">
             Login
@@ -96,6 +97,7 @@
           <a
             routerLink="/register"
             routerLinkActive="auth-nav__link--active"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="auth-nav__link auth-nav__link--register"
             (click)="closeSidenavOnMobile()">
             Register

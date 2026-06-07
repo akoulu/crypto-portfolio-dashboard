@@ -26,6 +26,18 @@ export const authGuard: CanActivateFn = (_route, state) => {
   );
 };
 
+export const homeRedirectGuard: CanActivateFn = () => {
+  const authFirebase = inject(AuthFirebase);
+  const router = inject(Router);
+
+  return authFirebase.waitForAuthState$().pipe(
+    take(1),
+    map((user) =>
+      router.createUrlTree([user ? AUTH_DEFAULT_REDIRECT : AUTH_LOGIN_PATH]),
+    ),
+  );
+};
+
 export const guestGuard: CanActivateFn = () => {
   const authFirebase = inject(AuthFirebase);
   const router = inject(Router);
