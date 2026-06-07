@@ -1,0 +1,94 @@
+<mat-sidenav-container class="shell-container">
+  <mat-sidenav
+    [mode]="sidenavMode"
+    [opened]="opened"
+    (openedChange)="opened = $event"
+    [fixedInViewport]="isMobile"
+    [fixedTopGap]="isMobile ? 56 : 0"
+    class="sidenav"
+    [attr.aria-hidden]="isMobile && !opened">
+
+    <div class="logo">
+      Crypto Dashboard
+    </div>
+
+    <mat-nav-list class="nav-list">
+
+      <a mat-list-item
+         routerLink="/dashboard"
+         routerLinkActive="active-link"
+         (click)="closeSidenavOnMobile()"
+         aria-label="Dashboard">
+
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+
+      </a>
+
+      <a mat-list-item
+         routerLink="/portfolio"
+         routerLinkActive="active-link"
+         (click)="closeSidenavOnMobile()"
+         aria-label="Portfolio">
+
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>Portfolio</span>
+
+      </a>
+
+      <a mat-list-item
+         routerLink="/transactions"
+         routerLinkActive="active-link"
+         (click)="closeSidenavOnMobile()"
+         aria-label="Transactions">
+
+        <mat-icon>swap_horiz</mat-icon>
+        <span>Transactions</span>
+
+      </a>
+
+      <a mat-list-item
+         routerLink="/analytics"
+         routerLinkActive="active-link"
+         (click)="closeSidenavOnMobile()"
+         aria-label="Analytics">
+
+        <mat-icon>analytics</mat-icon>
+        <span>Analytics</span>
+
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-content">
+
+    <mat-toolbar color="primary" class="topbar">
+
+      <button
+        mat-icon-button
+        type="button"
+        (click)="toggleSidenav()"
+        [attr.aria-label]="opened ? 'Close navigation menu' : 'Open navigation menu'"
+        [attr.aria-expanded]="opened">
+
+        <mat-icon>{{ isMobile && opened ? 'close' : 'menu' }}</mat-icon>
+      </button>
+
+      <span class="toolbar-title">Crypto Portfolio</span>
+
+      <span class="spacer"></span>
+
+      <button mat-icon-button type="button" aria-label="Toggle dark mode">
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
