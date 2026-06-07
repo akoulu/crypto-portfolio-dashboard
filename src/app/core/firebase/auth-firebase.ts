@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { FIREBASE_AUTH } from './firebase.providers';
 
@@ -13,4 +13,11 @@ export class AuthFirebase {
     const unsubscribe = onAuthStateChanged(this.auth, (user) => subscriber.next(user));
     return () => unsubscribe();
   });
+
+  signInWithGoogle(): Promise<User> {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+
+    return signInWithPopup(this.auth, provider).then((credential) => credential.user);
+  }
 }
