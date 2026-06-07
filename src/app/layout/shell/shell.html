@@ -85,6 +85,23 @@
       </div>
 
       <div class="header-actions">
+        <nav class="auth-nav" aria-label="Authentication">
+          <a
+            routerLink="/login"
+            routerLinkActive="auth-nav__link--active"
+            class="auth-nav__link"
+            (click)="closeSidenavOnMobile()">
+            Login
+          </a>
+          <a
+            routerLink="/register"
+            routerLinkActive="auth-nav__link--active"
+            class="auth-nav__link auth-nav__link--register"
+            (click)="closeSidenavOnMobile()">
+            Register
+          </a>
+        </nav>
+
         <span class="sticker sticker--cool header-sticker">Live</span>
         <button
           mat-icon-button

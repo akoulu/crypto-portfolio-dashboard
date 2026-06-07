@@ -1,29 +1,11 @@
-<section class="auth-page">
-  <div class="auth-visual" aria-hidden="true">
-    <span class="max-blob max-blob--1"></span>
-    <span class="max-blob max-blob--2"></span>
-    <span class="sticker sticker--lime auth-sticker">Join the stack</span>
-    <h2 class="display-title">
-      MORE COLOR.<br />
-      <span class="text-gradient">MORE CONTROL.</span>
-    </h2>
-    <p>Create an account and unlock the full maximal portfolio experience.</p>
-    <div class="auth-tags">
-      <span class="sticker sticker--hot">Free</span>
-      <span class="sticker sticker--cool">Analytics</span>
-    </div>
-  </div>
+<section class="auth-minimal animate-in">
+  <div class="auth-minimal__card">
+    <p class="auth-minimal__brand">Crypto Portfolio</p>
 
-  <div class="auth-panel neo-card animate-in">
-    <div class="auth-brand">
-      <mat-icon>currency_bitcoin</mat-icon>
-      <span>CRYPTO PORTFOLIO</span>
-    </div>
+    <h1 class="auth-minimal__title">Create account</h1>
+    <p class="auth-minimal__subtitle">A simple start — manage your crypto in one place.</p>
 
-    <h1 class="page-title">Create account</h1>
-    <p class="page-subtitle">Set up your workspace in under a minute.</p>
-
-    <form class="auth-form">
+    <form class="auth-minimal__form">
       <label>
         Full name
         <input type="text" placeholder="Alex Morgan" autocomplete="name" />
@@ -34,14 +16,14 @@
       </label>
       <label>
         Password
-        <input type="password" placeholder="••••••••" autocomplete="new-password" />
+        <input type="password" placeholder="Create a password" autocomplete="new-password" />
       </label>
-      <button type="button" class="btn-primary">Create account</button>
+      <button type="button" class="btn-minimal">Create account</button>
     </form>
 
-    <p class="auth-switch">
+    <p class="auth-minimal__switch">
       Already have an account?
-      <a routerLink="/auth">Sign in</a>
+      <a routerLink="/login">Sign in</a>
     </p>
   </div>
 </section>

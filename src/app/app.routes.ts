@@ -29,19 +29,21 @@ export const routes: Routes = [
           import('./features/analytics/pages/analytics/analytics').then((m) => m.Analytics),
       },
       {
+        path: 'login',
+        loadComponent: () => import('./features/auth/pages/login/login').then((m) => m.Login),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./features/auth/pages/register/register').then((m) => m.Register),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
     ],
   },
-  {
-    path: 'auth',
-    loadComponent: () => import('./features/auth/pages/login/login').then((m) => m.Login),
-  },
-  {
-    path: 'auth/register',
-    loadComponent: () =>
-      import('./features/auth/pages/register/register').then((m) => m.Register),
-  },
+  { path: 'auth', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'auth/register', redirectTo: '/register', pathMatch: 'full' },
 ];
