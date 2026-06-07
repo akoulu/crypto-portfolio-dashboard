@@ -14,10 +14,11 @@ export class AuthFirebase {
     return () => unsubscribe();
   });
 
-  signInWithGoogle(): Promise<User> {
+  async signInWithGoogle(): Promise<User> {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
 
-    return signInWithPopup(this.auth, provider).then((credential) => credential.user);
+    const credential = await signInWithPopup(this.auth, provider);
+    return credential.user;
   }
 }
