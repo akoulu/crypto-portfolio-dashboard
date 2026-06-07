@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   isPlatformBrowser
-} from "./chunk-BJ3ARHI3.js";
+} from "./chunk-EC4N4PTA.js";
 import {
   CSP_NONCE,
   Injectable,
@@ -9,15 +9,17 @@ import {
   NgZone,
   PLATFORM_ID,
   inject,
-  require_operators,
   setClassMetadata,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-3Y6RPOJO.js";
+} from "./chunk-YX6BR4LX.js";
 import {
   require_cjs
-} from "./chunk-O5J3CNTX.js";
+} from "./chunk-WGUHO3FC.js";
+import {
+  require_operators
+} from "./chunk-ZABWFEIQ.js";
 import {
   __toESM
 } from "./chunk-6DU2HRTW.js";
@@ -257,4 +259,4 @@ export {
   LayoutModule,
   Breakpoints
 };
-//# sourceMappingURL=chunk-DZTO3EZX.js.map
+//# sourceMappingURL=chunk-B5TNGYJM.js.map

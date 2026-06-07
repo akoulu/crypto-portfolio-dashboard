@@ -2,25 +2,30 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { vi } from 'vitest';
 
-import { AuthFirebase } from '../../../../core/firebase/auth-firebase';
+import { Auth } from '../../../../core/services/auth';
 import { Login } from './login';
 
 describe('Login', () => {
   let component: Login;
   let fixture: ComponentFixture<Login>;
-  let authFirebase: { signInWithGoogle: ReturnType<typeof vi.fn> };
+  let auth: {
+    signInWithGoogle: ReturnType<typeof vi.fn>;
+    signInWithEmail: ReturnType<typeof vi.fn>;
+    navigateAfterAuth: ReturnType<typeof vi.fn>;
+    resolveError: ReturnType<typeof vi.fn>;
+  };
 
   beforeEach(async () => {
-    authFirebase = {
+    auth = {
       signInWithGoogle: vi.fn().mockResolvedValue({ uid: 'test-user' }),
+      signInWithEmail: vi.fn().mockResolvedValue({ uid: 'test-user' }),
+      navigateAfterAuth: vi.fn().mockResolvedValue(undefined),
+      resolveError: vi.fn().mockReturnValue('Error'),
     };
 
     await TestBed.configureTestingModule({
       imports: [Login],
-      providers: [
-        provideRouter([]),
-        { provide: AuthFirebase, useValue: authFirebase },
-      ],
+      providers: [provideRouter([]), { provide: Auth, useValue: auth }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Login);
@@ -32,13 +37,10 @@ describe('Login', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should sign in with Google and navigate to dashboard', async () => {
-    const router = TestBed.inject(Router);
-    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
-
+  it('should sign in with Google and redirect', async () => {
     await component.signInWithGoogle();
 
-    expect(authFirebase.signInWithGoogle).toHaveBeenCalled();
-    expect(navigateSpy).toHaveBeenCalledWith(['/dashboard']);
+    expect(auth.signInWithGoogle).toHaveBeenCalled();
+    expect(auth.navigateAfterAuth).toHaveBeenCalled();
   });
 });

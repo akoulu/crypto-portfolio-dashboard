@@ -26,7 +26,7 @@ import {
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-3Y6RPOJO.js";
+} from "./chunk-YX6BR4LX.js";
 
 // node_modules/@angular/cdk/fesm2022/_style-loader-chunk.mjs
 var appsWithLoaders = /* @__PURE__ */ new WeakMap();
@@ -287,4 +287,4 @@ export {
   Directionality,
   BidiModule
 };
-//# sourceMappingURL=chunk-2EOPVXX4.js.map
+//# sourceMappingURL=chunk-ZLGFFPA5.js.map

@@ -1,19 +1,50 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthFirebase } from '../../../../core/firebase/auth-firebase';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Auth } from '../../../../core/services/auth';
+import { AUTH_RETURN_URL_QUERY_PARAM } from '../../../../core/firebase/auth-firebase.models';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
-  private readonly authFirebase = inject(AuthFirebase);
-  private readonly router = inject(Router);
+  private readonly auth = inject(Auth);
+  private readonly route = inject(ActivatedRoute);
+  private readonly fb = inject(FormBuilder);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
+
+  readonly form = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  async signInWithEmail(): Promise<void> {
+    if (this.loading()) {
+      return;
+    }
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.loading.set(true);
+    this.error.set(null);
+
+    try {
+      await this.auth.signInWithEmail(this.form.getRawValue());
+      await this.redirectAfterAuth();
+    } catch (err) {
+      this.error.set(this.auth.resolveError(err, 'Unable to sign in. Please try again.'));
+    } finally {
+      this.loading.set(false);
+    }
+  }
 
   async signInWithGoogle(): Promise<void> {
     if (this.loading()) {
@@ -24,28 +55,17 @@ export class Login {
     this.error.set(null);
 
     try {
-      await this.authFirebase.signInWithGoogle();
-      await this.router.navigate(['/dashboard']);
+      await this.auth.signInWithGoogle();
+      await this.redirectAfterAuth();
     } catch (err) {
-      this.error.set(this.resolveErrorMessage(err));
+      this.error.set(this.auth.resolveError(err, 'Unable to sign in with Google. Please try again.'));
     } finally {
       this.loading.set(false);
     }
   }
 
-  private resolveErrorMessage(error: unknown): string {
-    if (error && typeof error === 'object' && 'code' in error) {
-      const code = String((error as { code: string }).code);
-
-      if (code === 'auth/popup-closed-by-user') {
-        return 'Sign-in was cancelled.';
-      }
-    }
-
-    if (error instanceof Error && error.message) {
-      return error.message;
-    }
-
-    return 'Unable to sign in with Google. Please try again.';
+  private async redirectAfterAuth(): Promise<void> {
+    const returnUrl = this.route.snapshot.queryParamMap.get(AUTH_RETURN_URL_QUERY_PARAM);
+    await this.auth.navigateAfterAuth(returnUrl);
   }
 }

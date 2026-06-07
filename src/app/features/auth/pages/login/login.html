@@ -36,16 +36,30 @@
       <span>or</span>
     </div>
 
-    <form class="auth-minimal__form">
+    <form class="auth-minimal__form" [formGroup]="form" (ngSubmit)="signInWithEmail()">
       <label>
         Email
-        <input type="email" placeholder="you@example.com" autocomplete="email" />
+        <input type="email" formControlName="email" placeholder="you@example.com" autocomplete="email" />
       </label>
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <p class="auth-minimal__field-error">Enter a valid email address.</p>
+      }
+
       <label>
         Password
-        <input type="password" placeholder="Your password" autocomplete="current-password" />
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Your password"
+          autocomplete="current-password" />
       </label>
-      <button type="button" class="btn-minimal">Sign in with email</button>
+      @if (form.controls.password.touched && form.controls.password.invalid) {
+        <p class="auth-minimal__field-error">Password must be at least 6 characters.</p>
+      }
+
+      <button type="submit" class="btn-minimal" [disabled]="loading()">
+        {{ loading() ? 'Signing in…' : 'Sign in with email' }}
+      </button>
     </form>
 
     <p class="auth-minimal__switch">

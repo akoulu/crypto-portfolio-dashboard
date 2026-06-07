@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { Auth } from 'firebase/auth';
-import { vi } from 'vitest';
 
 import { AuthFirebase } from './auth-firebase';
 import { FIREBASE_AUTH } from './firebase.providers';
@@ -13,11 +12,12 @@ describe('AuthFirebase', () => {
       providers: [
         {
           provide: FIREBASE_AUTH,
-          useValue: {} as Auth,
+          useValue: { currentUser: null } as Auth,
         },
         AuthFirebase,
       ],
     });
+
     service = TestBed.inject(AuthFirebase);
   });
 

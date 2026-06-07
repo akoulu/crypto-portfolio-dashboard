@@ -177,6 +177,13 @@
   margin-top: 0;
 }
 
+.auth-minimal__field-error {
+  margin: -8px 0 0;
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .auth-minimal__switch {
   margin: 20px 0 0;
   text-align: center;

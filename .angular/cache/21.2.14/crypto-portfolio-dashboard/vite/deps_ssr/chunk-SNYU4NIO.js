@@ -1,30 +1,34 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  index
-} from "./chunk-7VO7PY3Q.js";
-import {
   ActivatedRoute,
   ROUTES,
   Router,
   loadChildren
-} from "./chunk-W6IN3XTM.js";
+} from "./chunk-NHBKC6DM.js";
+import {
+  index
+} from "./chunk-7VO7PY3Q.js";
 import {
   BrowserDomAdapter,
   BrowserModule,
   EVENT_MANAGER_PLUGINS,
-  EventManagerPlugin,
+  EventManagerPlugin
+} from "./chunk-WVNPFN2G.js";
+import {
   HTTP_ROOT_INTERCEPTOR_FNS
-} from "./chunk-MSLQZUWW.js";
+} from "./chunk-JYIGNDTV.js";
 import {
   APP_BASE_HREF,
   NullViewportScroller,
   PLATFORM_SERVER_ID,
+  ViewportScroller
+} from "./chunk-EC4N4PTA.js";
+import {
   PlatformLocation,
-  ViewportScroller,
   XhrFactory,
   getDOM,
   setRootDomAdapter
-} from "./chunk-BJ3ARHI3.js";
+} from "./chunk-ITMSYRH2.js";
 import {
   APP_ID,
   ApplicationRef,
@@ -70,10 +74,10 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-3Y6RPOJO.js";
+} from "./chunk-YX6BR4LX.js";
 import {
   require_cjs
-} from "./chunk-O5J3CNTX.js";
+} from "./chunk-WGUHO3FC.js";
 import {
   __objRest,
   __spreadProps,
@@ -12664,4 +12668,4 @@ export {
   AngularAppEngine,
   createRequestHandler
 };
-//# sourceMappingURL=chunk-6J3MNE7L.js.map
+//# sourceMappingURL=chunk-SNYU4NIO.js.map
