@@ -1,24 +1,36 @@
 <section class="page animate-in">
-  <header class="page-header">
-    <div>
-      <p class="page-subtitle">Track portfolio value, daily change, and asset performance at a glance.</p>
+  <article class="max-hero stagger-1">
+    <div class="max-hero__top">
+      <span class="sticker sticker--hot">All assets</span>
+      <span class="chip chip--gold">+4.2% today</span>
     </div>
-    <span class="chip chip--success">Live market data</span>
-  </header>
+    <p class="max-hero__value">$24,580<span class="text-gradient">.42</span></p>
+    <div class="max-hero__meta">
+      <span class="sticker sticker--cool">12 coins</span>
+      <span class="sticker sticker--lime">3 wallets</span>
+      <span class="chip chip--success">Bull run</span>
+    </div>
+  </article>
 
   <app-stats-cards />
 
   <div class="page-grid page-grid--2">
-    <article class="panel hover-lift stagger-2">
-      <h3 class="panel-title">Recent activity</h3>
+    <article class="panel panel--violet hover-lift stagger-2">
+      <div class="panel-head">
+        <h3 class="panel-title">Recent activity</h3>
+        <span class="sticker">New</span>
+      </div>
       <div class="empty-state panel-empty">
         <mat-icon>history</mat-icon>
         <p>Transactions will appear here once you add your first trade.</p>
       </div>
     </article>
 
-    <article class="panel hover-lift stagger-3">
-      <h3 class="panel-title">Top movers</h3>
+    <article class="panel panel--rose hover-lift stagger-3">
+      <div class="panel-head">
+        <h3 class="panel-title">Top movers</h3>
+        <span class="sticker sticker--hot">24h</span>
+      </div>
       <div class="empty-state panel-empty">
         <mat-icon>trending_up</mat-icon>
         <p>Connect assets to see today&apos;s best and worst performers.</p>

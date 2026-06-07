@@ -2,10 +2,15 @@
   @for (card of cards; track card.label; let i = $index) {
     <article
       class="neo-card stat-card hover-lift animate-in"
+      [class.stat-card--violet]="card.tone === 'violet'"
+      [class.stat-card--rose]="card.tone === 'rose'"
+      [class.stat-card--cyan]="card.tone === 'cyan'"
+      [class.stat-card--gold]="card.tone === 'gold'"
       [class.stagger-1]="i === 0"
       [class.stagger-2]="i === 1"
       [class.stagger-3]="i === 2"
       [class.stagger-4]="i === 3">
+      <div class="stat-card__badge" aria-hidden="true">#{{ i + 1 }}</div>
       <div class="stat-card__icon" aria-hidden="true">
         <mat-icon>{{ card.icon }}</mat-icon>
       </div>

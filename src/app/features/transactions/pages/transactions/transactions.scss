@@ -1,13 +1,24 @@
 .empty-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .empty-state mat-icon {
-  width: 32px;
-  height: 32px;
-  font-size: 32px;
-  color: var(--accent);
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: var(--accent-3);
+}
+
+.panel {
+  position: relative;
+
+  .sticker {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
 }

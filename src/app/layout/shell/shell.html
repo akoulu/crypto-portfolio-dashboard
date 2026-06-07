@@ -12,8 +12,8 @@
           <mat-icon>currency_bitcoin</mat-icon>
         </span>
         <div class="brand-copy">
-          <span class="brand-name text-gradient">Crypto</span>
-          <span class="brand-tag">Portfolio</span>
+          <span class="brand-name text-gradient">CRYPTO</span>
+          <span class="brand-tag sticker sticker--lime">Max mode</span>
         </div>
       </div>
 
@@ -62,6 +62,12 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="main">
+    <div class="max-bg" aria-hidden="true">
+      <span class="max-blob max-blob--1"></span>
+      <span class="max-blob max-blob--2"></span>
+      <span class="max-blob max-blob--3"></span>
+    </div>
+
     <header class="header">
       <button
         mat-icon-button
@@ -74,11 +80,12 @@
       </button>
 
       <div class="header-copy">
-        <p class="eyebrow">Workspace</p>
+        <p class="eyebrow">Portfolio HQ</p>
         <h1 class="page-title">{{ pageTitle }}</h1>
       </div>
 
       <div class="header-actions">
+        <span class="sticker sticker--cool header-sticker">Live</span>
         <button
           mat-icon-button
           type="button"
